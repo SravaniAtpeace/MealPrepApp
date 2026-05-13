@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "env": { "browser": true, "node": true, "es2022": true },
+  "extends": ["eslint:recommended", "prettier"],
+  "parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
+  "overrides": [
+    { /***
+        files & extends - it says for js/jsx files under client, load react plugin's recommended rules.
+        Also, override is only for client since server doesn't use JSX.
+    ***/
+      "files": ["client/**/*.{js,jsx}"],
+      "extends": ["plugin:react/recommended", "prettier"],
+      "settings": { "react": { "version": "detect" } },
+      "rules": { "react/react-in-jsx-scope": "off" }
+    }
+  ],
+  "ignorePatterns": ["node_modules", "dist", "build"]
+}
