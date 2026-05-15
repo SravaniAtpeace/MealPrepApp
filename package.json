@@ -2,19 +2,24 @@
   "name": "meal-prep-from-scratch",
   "private": true,
   "version": "1.0.0",
-  "workspaces":["server","client"],
+  "workspaces": [
+    "server",
+    "client"
+  ],
   "description": "creating meal plans",
   "license": "ISC",
   "author": "Sravani",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "test": "npm run test --workspaces --if-present",
+    "dev": "concurrently -n server,client -c green,blue \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "npm run dev -w server",
     "dev:client": "npm run dev -w client"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.34.0",
