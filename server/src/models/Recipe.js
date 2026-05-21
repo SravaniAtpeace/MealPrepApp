@@ -7,11 +7,10 @@ import mongoose from 'mongoose'
 */
 
 const RecipeSchema = new mongoose.Schema({
-  _id,
-  name: String,                       // TranslatedRecipeName
+  name: {type: String, required: true, index: true},                       // TranslatedRecipeName
   ingredientsRaw: String,             // TranslatedIngredients (verbatim, comma-separated)
   ingredientsParsed: [{               // best-effort tokenization for grocery aggregation + filtering
-    name: String, qty: Number, unit: String, raw: String
+    _id: false, name: String, qty: Number, unit: String, raw: String,
   }],
   prepTimeMins: Number,
   cookTimeMins: Number,
@@ -20,6 +19,10 @@ const RecipeSchema = new mongoose.Schema({
   cuisine: String,                    // e.g., "South Indian", "Continental"
   course: String,                     // mapped to meal slot — see §4.2
   diet: String,                       // enum, see §4.3
+  eligibleSlots : [{
+    type: String,
+    enum: ['breakfast', 'midMorning', 'lunch', 'eveningSnack', 'dinner'],
+  }],
   instructions: String,               // TranslatedInstructions
 }, {timestamps: true});
 

@@ -1,10 +1,17 @@
+import mongoose from 'mongoose'
+
 const IngredientSchema = new mongoose.Schema({ 
     name :{
       type: String,
       unique: true, // This creates the unique index in MongoDB
-      required: true
+      required: true,
+      lowercase: true,
+      trim: true
     },
-    alias: String,
+    aliases: {
+      type: [String], 
+      default: []
+    },
     defaultUnit: { 
       type: String,
       default: null 
@@ -13,7 +20,7 @@ const IngredientSchema = new mongoose.Schema({
       type: String, 
       default: null 
     }
-}); 
+}, {timestamps: true}); 
 
 IngredientSchema.index({ name: 1 }, { unique: true });
 
