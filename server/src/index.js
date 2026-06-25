@@ -2,8 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import { stubUserMiddleware } from './middleware/stubUserMiddleware.js';
-import Recipe from '../models/Recipe.js';
-import Ingredient from '../models/Ingredient.js';
+import Recipe from './models/Recipe.js';
+import Ingredient from './models/Ingredient.js';
 
 const app = express();
 app.use(express.json());

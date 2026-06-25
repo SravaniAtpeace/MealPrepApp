@@ -22,6 +22,5 @@ const IngredientSchema = new mongoose.Schema({
     }
 }, {timestamps: true}); 
 
-IngredientSchema.index({ name: 1 }, { unique: true });
 
 export default mongoose.model('Ingredient', IngredientSchema);
